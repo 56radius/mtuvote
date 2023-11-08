@@ -114,75 +114,81 @@ function HomeScreen() {
       <main id="main" className="main">
         <div className="pagetitle">
           <h1>
-            {" "}
-            <span style={{ color: "green" }}> Pick your president </span>
+            <span style={{ color: "green" }}>Pick your president</span>
           </h1>
         </div>
 
         <section className="section dashboard">
           <div className="row">
             <div className="col-lg-8">
-              {/* Cards */}
-              {/* first picture vote */}
-              <div className="card mb-3" style={{ width: 300, height: 500 }}>
-                <div className="card-body">
-                  <div className="col-12">
-                    <img
-                      src={merit}
-                      alt="merit"
-                      style={{
-                        width: 260,
-                        height: 400,
-                        justifyContent: "center",
-                        alignItems: "center",
-                        left: 0,
-                        bottom: 0,
-                      }}
-                    />
+              {/* Cards - Display side by side using Bootstrap's grid system */}
+              <div className="row">
+                <div className="col-md-6">
+                  <div
+                    className="card mb-3"
+                    style={{ width: "100%", height: "auto" }}
+                  >
+                    <div className="card-body">
+                      <div className="col-12">
+                        <img
+                          src={merit}
+                          alt="merit"
+                          style={{
+                            width: "100%",
+                            height: "auto",
+                          }}
+                        />
+                        <hr />
 
-                    <hr />
-                    <button
-                      className="btn btn-primary w-100"
-                      name="login"
-                      type="submit"
-                      style={{
-                        backgroundColor: "green",
-                      }}
-                    >
-                      Vote
-                    </button>
+                        <p> Merit Mohammed </p>
+                        <hr />
+
+                        <button
+                          className="btn btn-primary w-100"
+                          name="login"
+                          type="submit"
+                          style={{
+                            backgroundColor: "green",
+                          }}
+                        >
+                          Vote
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+                <div className="col-md-6">
+                  <div
+                    className="card mb-3"
+                    style={{ width: "100%", height: "auto" }}
+                  >
+                    <div className="card-body">
+                      <div className="col-12">
+                        <img
+                          src={merit}
+                          alt="merit"
+                          style={{
+                            width: "100%",
+                            height: "auto",
+                          }}
+                        />
+                        <hr />
 
-              {/* Second picture vote */}
-              <div className="card mb-3" style={{ width: 300, height: 500 }}>
-                <div className="card-body">
-                  <div className="col-12">
-                    <img
-                      src={merit}
-                      alt="merit"
-                      style={{
-                        width: 260,
-                        height: 400,
-                        justifyContent: "center",
-                        alignItems: "center",
-                        left: 0,
-                        bottom: 0,
-                      }}
-                    />
+                        <p> Sodeeq </p>
 
-                    <hr />
-                    <button
-                      className="btn btn-primary w-100"
-                      name="login"
-                      type="submit"
-                      style={{
-                        backgroundColor: "green",
-                      }}
-                    >
-                      Vote
-                    </button>
+                        <hr />
+                        <button
+                          className="btn btn-primary w-100"
+                          name="login"
+                          type="submit"
+                          style={{
+                            backgroundColor: "green",
+                          }}
+                        >
+                          Vote
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
