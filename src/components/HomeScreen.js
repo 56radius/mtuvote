@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+
+//axios
+import axios from "axios";
 
 //logo
 import logo from ".././assets/img/logo.jpg";
@@ -12,6 +15,31 @@ import ".././assets/dashboard/assets/vendor/bootstrap/css/bootstrap.min.css";
 import ".././assets/dashboard/assets/vendor/bootstrap-icons/bootstrap-icons.css";
 
 function HomeScreen() {
+  //votng functions
+  const [voted, setVoted] = useState(false);
+
+  const handleVote = (candidateName) => {
+    if (!voted) {
+      // Make a POST request to the voting API
+      axios
+        .post("https://nacos-vote.onrender.com/voters/vote", {
+          candidate: candidateName,
+        })
+        .then((response) => {
+          // Handle a successful vote
+          console.log("Vote successful");
+          // Update the state to reflect that the user has voted
+          setVoted(true);
+        })
+        .catch((error) => {
+          // Handle errors, e.g., display an error message to the user
+          console.error("Vote failed", error);
+        });
+    } else {
+      // Handle the case where the user has already voted
+      // You can show a message or prevent the user from voting again
+    }
+  };
   return (
     <div>
       <header
@@ -150,6 +178,7 @@ function HomeScreen() {
                           style={{
                             backgroundColor: "green",
                           }}
+                          onClick={() => handleVote("Merit Mohammed")}
                         >
                           Vote
                         </button>
@@ -184,6 +213,7 @@ function HomeScreen() {
                           style={{
                             backgroundColor: "green",
                           }}
+                          onClick={() => handleVote("Sodeeq")}
                         >
                           Vote
                         </button>
@@ -200,7 +230,7 @@ function HomeScreen() {
       {/* footer */}
       <footer id="footer" className="footer">
         <div className="copyright">
-          &copy; Copyright 2023 Avinx Nation All Rights Reserved
+          &copy; Copyright 2023 Avinx Nation | CHOWGOO All Rights Reserved
         </div>
         <div className="credits"></div>
       </footer>
