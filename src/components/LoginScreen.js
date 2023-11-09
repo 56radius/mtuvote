@@ -53,7 +53,10 @@ function LoginScreen() {
                         <img
                           src={logo}
                           alt="logo"
-                          style={{ height: 200, width: "90%" }}
+                          style={{
+                            width: "190%",
+                            height: "400px",
+                          }}
                         />
                       </span>
                     </a>
@@ -63,7 +66,7 @@ function LoginScreen() {
                       <div className="card-body">
                         <div className="pt-4 pb-2">
                           <h5 className="card-title text-center pb-0 fs-4">
-                            Welcome Narcosites
+                            Welcome Nacosites
                           </h5>
                         </div>
                         <form className="row g-3 needs-validation" novalidate>
