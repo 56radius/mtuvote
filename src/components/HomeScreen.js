@@ -36,8 +36,6 @@ function HomeScreen() {
           console.error("Vote failed", error);
         });
     } else {
-      // Handle the case where the user has already voted
-      // You can show a message or prevent the user from voting again
     }
   };
   return (

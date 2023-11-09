@@ -1,21 +1,39 @@
 import React from "react";
-
-//import react-router-dom
 import { useNavigate } from "react-router-dom";
-
-//import narcos logo
 import logo from ".././assets/img/logo.jpg";
-
-//importing css files
 import ".././assets/vendor/bootstrap/css/bootstrap.min.css";
-
-//importing vendor files
 
 function LoginScreen() {
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    navigate("/home");
+  const handleLogin = async (event) => {
+    try {
+      event.preventDefault(); // Prevent default form submission behavior
+
+      const voteNumber = document.getElementById("yourPassword").value;
+
+      const response = await fetch(
+        "https://nacos-vote.onrender.com/Voting/login_voters_voters_login_post",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            voteNumber: voteNumber,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        navigate("/home");
+      } else {
+        alert("Login failed. Please check your vote number and try again.");
+      }
+    } catch (error) {
+      alert("An error occurred during login. Please try again later.");
+      console.error("Error during login:", error);
+    }
   };
 
   return (
@@ -32,19 +50,14 @@ function LoginScreen() {
                       className="logo d-flex align-items-center w-auto"
                     >
                       <span className="d-none d-lg-block">
-                        {/* logo */}
                         <img
                           src={logo}
                           alt="logo"
-                          style={{
-                            height: 100,
-                            width: 100,
-                          }}
+                          style={{ height: 200, width: "90%" }}
                         />
                       </span>
                     </a>
                   </div>
-                  {/* End Logo */}
                   <form action="" className="mt" method="post">
                     <div className="card mb-3">
                       <div className="card-body">
@@ -53,10 +66,12 @@ function LoginScreen() {
                             Welcome Narcosites
                           </h5>
                         </div>
-
                         <form className="row g-3 needs-validation" novalidate>
                           <div className="col-12">
-                            <label for="yourPassword" className="form-label">
+                            <label
+                              htmlFor="yourPassword"
+                              className="form-label"
+                            >
                               Vote number
                             </label>
                             <input
@@ -70,15 +85,12 @@ function LoginScreen() {
                               Please enter vote number
                             </div>
                           </div>
-
                           <div className="col-12">
                             <button
                               className="btn btn-primary w-100"
                               name="login"
                               type="submit"
-                              style={{
-                                backgroundColor: "green",
-                              }}
+                              style={{ backgroundColor: "green" }}
                               onClick={handleLogin}
                             >
                               Login
