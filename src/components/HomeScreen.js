@@ -81,6 +81,13 @@ function HomeScreen() {
           <li className="nav-item">
             <a className="nav-link collapsed" href="users-profile.html">
               <i className="bi bi-person"></i>
+              <span> FINANCIAL SECRETARY </span>
+            </a>
+          </li>
+
+          <li className="nav-item">
+            <a className="nav-link collapsed" href="users-profile.html">
+              <i className="bi bi-person"></i>
               <span> GENERAL SECRETARY </span>
             </a>
           </li>
@@ -95,7 +102,7 @@ function HomeScreen() {
           <li className="nav-item">
             <a className="nav-link collapsed" href="users-profile.html">
               <i className="bi bi-person"></i>
-              <span> FINANCIAL SECRETARY </span>
+              <span> PUBLIC RELATION OFFICER </span>
             </a>
           </li>
 
@@ -110,13 +117,6 @@ function HomeScreen() {
             <a className="nav-link collapsed" href="users-profile.html">
               <i className="bi bi-person"></i>
               <span> ASST LIBRARIAN </span>
-            </a>
-          </li>
-
-          <li className="nav-item">
-            <a className="nav-link collapsed" href="users-profile.html">
-              <i className="bi bi-person"></i>
-              <span> PUBLIC RELATION OFFICER </span>
             </a>
           </li>
 

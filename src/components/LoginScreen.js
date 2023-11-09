@@ -69,7 +69,7 @@ function LoginScreen() {
                             Welcome Nacosites
                           </h5>
                         </div>
-                        <form className="row g-3 needs-validation" novalidate>
+                        <form className="row g-3 needs-validation" noValidate>
                           <div className="col-12">
                             <label
                               htmlFor="yourPassword"
