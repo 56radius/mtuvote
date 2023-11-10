@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import logo from ".././assets/img/logo.jpg";
-import ".././assets/vendor/bootstrap/css/bootstrap.min.css";
+import logo from "../assets/img/logo.jpg";
+import "../assets/vendor/bootstrap/css/bootstrap.min.css";
 
 function LoginScreen() {
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ function LoginScreen() {
       const voteNumber = document.getElementById("yourPassword").value;
 
       const response = await fetch(
-        "https://nacos-vote.onrender.com/Voting/login_voters_voters_login_post",
+        "https://nacos-vote.onrender.com/voters/login?voting_number=nt5bgi",
         {
           method: "POST",
           headers: {
@@ -27,8 +27,10 @@ function LoginScreen() {
 
       if (response.ok) {
         navigate("/home");
+        alert("Login Successful, Please vote well");
       } else {
-        alert("Login failed. Please check your vote number and try again.");
+        alert("Login failed. Please check your vote number and try again");
+        console.log("Error during login");
       }
     } catch (error) {
       alert("An error occurred during login. Please try again later.");
