@@ -7,11 +7,13 @@ import "../assets/vendor/bootstrap/css/bootstrap.min.css";
 function LoginScreen() {
   const navigate = useNavigate();
   const [voteNumber, setVoteNumber] = useState("");
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjU0ZDUyZjViZWY3YjQ5NjEwZWI5ODc5IiwiZXhwIjoxNzAyMjkwNTQ2fQ.dIksF-WtdEYPeFfGWYsz3T2P839rSGX8vuNSVKgBmJ8"
+  );
 
   const handleLogin = async (event) => {
     try {
-      event.preventDefault(); // Prevent default form submission behavior
+      event.preventDefault();
 
       const response = await fetch(
         `https://nacos-vote.onrender.com/voters/login?voting_number=${voteNumber}`,
@@ -19,6 +21,7 @@ function LoginScreen() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`, // Include the bearer token here
           },
           body: JSON.stringify({
             voteNumber: voteNumber,

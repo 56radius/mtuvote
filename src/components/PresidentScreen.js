@@ -14,7 +14,9 @@ const MySwal = withReactContent(Swal);
 function PresidentScreen() {
   const navigate = useNavigate();
   const [candidates, setCandidates] = useState([]);
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjU0ZDUyZjViZWY3YjQ5NjEwZWI5ODc5IiwiZXhwIjoxNzAyMjkwNTQ2fQ.dIksF-WtdEYPeFfGWYsz3T2P839rSGX8vuNSVKgBmJ8"
+  );
 
   useEffect(() => {
     axios
@@ -52,7 +54,7 @@ function PresidentScreen() {
           MySwal.fire({
             icon: "error",
             title: "Vote Failed",
-            text: "An error occurred. Please try again.",
+            text: "you've voted on this post, cannot vote again",
           });
         });
     }
@@ -89,6 +91,16 @@ function PresidentScreen() {
             >
               <i className="bi bi-person"></i>
               <span style={{ color: "green" }}> PRESIDENT </span>
+            </button>
+
+            {/* Vice President */}
+            <button
+              style={{ borderWidth: 0, backgroundColor: "#fff" }}
+              onClick={() => navigate("/1")}
+              className="nav-link "
+            >
+              <i className="bi bi-person"></i>
+              <span> VICE PRESIDENT </span>
             </button>
           </li>
 
