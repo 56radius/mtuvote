@@ -1,19 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/img/logo.jpg";
 import "../assets/vendor/bootstrap/css/bootstrap.min.css";
 
 function LoginScreen() {
   const navigate = useNavigate();
+  const [voteNumber, setVoteNumber] = useState("");
 
   const handleLogin = async (event) => {
     try {
       event.preventDefault(); // Prevent default form submission behavior
 
-      const voteNumber = document.getElementById("yourPassword").value;
-
       const response = await fetch(
-        "https://nacos-vote.onrender.com/voters/login?voting_number=nt5bgi",
+        `https://nacos-vote.onrender.com/voters/login?voting_number=${voteNumber}`,
         {
           method: "POST",
           headers: {
@@ -84,6 +83,8 @@ function LoginScreen() {
                               name="country"
                               className="form-control"
                               id="yourPassword"
+                              value={voteNumber}
+                              onChange={(e) => setVoteNumber(e.target.value)}
                               required
                             />
                             <div className="invalid-feedback">

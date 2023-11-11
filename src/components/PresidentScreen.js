@@ -28,6 +28,7 @@ function PresidentScreen() {
       });
   };
 
+  //handling voting functions
   const [candidates, setCandidates] = useState([]);
 
   useEffect(() => {
@@ -41,17 +42,17 @@ function PresidentScreen() {
       });
   }, []);
 
-  const [voted, setVoted] = useState(false);
-
   const handleVote = (candidateName) => {
-    if (!voted) {
+    console.log(candidateName);
+
+    if (candidateName) {
       axios
         .post("https://nacos-vote.onrender.com/voters/vote", {
           candidate: candidateName,
         })
         .then((response) => {
-          console.log("Vote successful");
-          setVoted(true);
+          console.log(response);
+          alert("Vote successful");
         })
         .catch((error) => {
           console.error("Vote failed", error);
