@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import logo from "../assets/img/logo.jpg";
 import "../assets/vendor/bootstrap/css/bootstrap.min.css";
 
 function LoginScreen() {
   const navigate = useNavigate();
   const [voteNumber, setVoteNumber] = useState("");
+  const [token, setToken] = useState(null);
 
   const handleLogin = async (event) => {
     try {
@@ -25,14 +27,30 @@ function LoginScreen() {
       );
 
       if (response.ok) {
+        const responseData = await response.json();
+        const { token } = responseData;
+        setToken(token);
+
         navigate("/home");
-        alert("Login Successful, Please vote well");
+        Swal.fire({
+          icon: "success",
+          title: "Login Successful",
+          text: "Please vote well.",
+        });
       } else {
-        alert("Login failed. Please check your vote number and try again");
+        Swal.fire({
+          icon: "error",
+          title: "Login Failed",
+          text: "Please check your vote number and try again.",
+        });
         console.log("Error during login");
       }
     } catch (error) {
-      alert("An error occurred during login. Please try again later.");
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "An error occurred during login. Please try again later.",
+      });
       console.error("Error during login:", error);
     }
   };

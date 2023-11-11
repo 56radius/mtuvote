@@ -1,35 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import logo from ".././assets/img/logo.jpg";
 import merit from ".././assets/img/merit.JPG";
 import ".././assets/dashboard/assets/css/style.css";
 import ".././assets/dashboard/assets/vendor/bootstrap/css/bootstrap.min.css";
 import ".././assets/dashboard/assets/vendor/bootstrap-icons/bootstrap-icons.css";
 
+const MySwal = withReactContent(Swal);
+
 function PresidentScreen() {
   const navigate = useNavigate();
-
-  const handlePresident = () => {
-    navigate("/1");
-  };
-
-  //handlogout functions
-  const handleLogout = () => {
-    axios
-      .post("https://nacos-vote.onrender.com/voters/logout")
-      .then((response) => {
-        navigate("/login");
-        console.log("Logout successful");
-        alert("Thank you for voting");
-      })
-      .catch((error) => {
-        console.error("Logout failed", error);
-      });
-  };
-
-  //handling voting functions
   const [candidates, setCandidates] = useState([]);
+  const [token, setToken] = useState(null);
 
   useEffect(() => {
     axios
@@ -42,20 +27,33 @@ function PresidentScreen() {
       });
   }, []);
 
-  const handleVote = (candidateName) => {
-    console.log(candidateName);
-
-    if (candidateName) {
+  const handleVote = (candidateId) => {
+    if (candidateId && token) {
       axios
-        .post("https://nacos-vote.onrender.com/voters/vote", {
-          candidate: candidateName,
-        })
+        .post(
+          `https://nacos-vote.onrender.com/voters/vote/1/${candidateId}`,
+          null,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
         .then((response) => {
           console.log(response);
-          alert("Vote successful");
+          MySwal.fire({
+            icon: "success",
+            title: "Vote Successful",
+            text: "Thank you for voting!",
+          });
         })
         .catch((error) => {
           console.error("Vote failed", error);
+          MySwal.fire({
+            icon: "error",
+            title: "Vote Failed",
+            text: "An error occurred. Please try again.",
+          });
         });
     }
   };
@@ -70,7 +68,6 @@ function PresidentScreen() {
           <a href="index.html" className="logo d-flex align-items-center">
             <img src={logo} alt="logo" />
             <span className="d-none d-lg-block">
-              {" "}
               <span style={{ color: "green", listStyle: "none" }}>
                 {" "}
                 NACOS VOTE{" "}
@@ -87,15 +84,13 @@ function PresidentScreen() {
           <li className="nav-item">
             <button
               style={{ borderWidth: 0, backgroundColor: "#fff" }}
-              onClick={handlePresident}
+              onClick={() => navigate("/1")}
               className="nav-link "
             >
               <i className="bi bi-person"></i>
               <span style={{ color: "green" }}> PRESIDENT </span>
             </button>
           </li>
-
-          {/* Add other list items for different positions as needed */}
 
           <li className="nav-item">
             <button
@@ -104,7 +99,7 @@ function PresidentScreen() {
                 backgroundColor: "transparent",
                 borderWidth: 0,
               }}
-              onClick={handleLogout}
+              onClick={() => navigate("/login")}
             >
               <i className="bi bi-person"></i>
               <span> LOG OUT </span>
@@ -154,7 +149,7 @@ function PresidentScreen() {
                             style={{
                               backgroundColor: "green",
                             }}
-                            onClick={() => handleVote(candidate.firstname)}
+                            onClick={() => handleVote(candidate.id)}
                           >
                             Vote
                           </button>
