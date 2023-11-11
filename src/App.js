@@ -4,6 +4,7 @@ import SplashScreen from "./components/SplashScreen";
 import LoginScreen from "./components/LoginScreen";
 import HomeScreen from "./components/HomeScreen";
 import PresidentScreen from "./components/PresidentScreen";
+import VicePresidentScreen from "./components/VicePresidentScreen";
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -26,6 +27,7 @@ function App() {
           />
           <Route path="/home" element={<HomeScreen />} />
           <Route path="/1" element={<PresidentScreen />} />
+          <Route path="/2" element={<VicePresidentScreen />} />
         </Routes>
       </div>
     </Router>

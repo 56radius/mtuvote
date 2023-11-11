@@ -15,7 +15,7 @@ function PresidentScreen() {
   const navigate = useNavigate();
   const [candidates, setCandidates] = useState([]);
   const [token, setToken] = useState(
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjU0ZDUyZjViZWY3YjQ5NjEwZWI5ODc5IiwiZXhwIjoxNzAyMjkwNTQ2fQ.dIksF-WtdEYPeFfGWYsz3T2P839rSGX8vuNSVKgBmJ8"
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjU0ZDUyZjRiZWY3YjQ5NjEwZWI5ODZmIiwiZXhwIjoxNzAyMjkyNzEzfQ.NFeTlcv6o4h_gJ-2cfxxbRsoC4lF7-KVc7Y6Gskllws"
   );
 
   useEffect(() => {
@@ -96,7 +96,7 @@ function PresidentScreen() {
             {/* Vice President */}
             <button
               style={{ borderWidth: 0, backgroundColor: "#fff" }}
-              onClick={() => navigate("/1")}
+              onClick={() => navigate("/2")}
               className="nav-link "
             >
               <i className="bi bi-person"></i>
@@ -111,7 +111,7 @@ function PresidentScreen() {
                 backgroundColor: "transparent",
                 borderWidth: 0,
               }}
-              onClick={() => navigate("/login")}
+              onClick={() => navigate("/")}
             >
               <i className="bi bi-person"></i>
               <span> LOG OUT </span>

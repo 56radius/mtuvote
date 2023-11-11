@@ -16,9 +16,17 @@ import ".././assets/dashboard/assets/vendor/bootstrap-icons/bootstrap-icons.css"
 function HomeScreen() {
   const navigate = useNavigate();
 
+  //president
   const handlePresident = () => {
     navigate("/1");
   };
+
+  //handling vice president
+  const handleVicepresident = () => {
+    navigate("/2");
+  };
+
+  //handling financial secretary
 
   //handlogout functions
   const handleLogout = async () => {
@@ -32,7 +40,7 @@ function HomeScreen() {
       // Handle logout error here, such as showing an error message
       alert("Logout failed. Please try again.");
     }
-  };  
+  };
 
   return (
     <div>
@@ -72,10 +80,17 @@ function HomeScreen() {
           </li>
 
           <li className="nav-item">
-            <a className="nav-link collapsed" href="users-profile.html">
+            <button
+              style={{
+                backgroundColor: "#fff",
+                borderWidth: 0,
+              }}
+              onClick={handleVicepresident}
+              className="nav-link collapsed"
+            >
               <i className="bi bi-person"></i>
               <span> VICE PRESIDENT </span>
-            </a>
+            </button>
           </li>
 
           <li className="nav-item">
@@ -142,7 +157,7 @@ function HomeScreen() {
                 backgroundColor: "transparent",
                 borderWidth: 0,
               }}
-              onClick={handleLogout}
+              onClick={() => navigate("/")}
             >
               <i className="bi bi-person"></i>
               <span> LOG OUT </span>

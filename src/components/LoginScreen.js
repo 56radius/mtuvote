@@ -8,7 +8,7 @@ function LoginScreen() {
   const navigate = useNavigate();
   const [voteNumber, setVoteNumber] = useState("");
   const [token, setToken] = useState(
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjU0ZDUyZjViZWY3YjQ5NjEwZWI5ODc5IiwiZXhwIjoxNzAyMjkwNTQ2fQ.dIksF-WtdEYPeFfGWYsz3T2P839rSGX8vuNSVKgBmJ8"
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjU0ZDUyZjRiZWY3YjQ5NjEwZWI5ODZmIiwiZXhwIjoxNzAyMjkyNzEzfQ.NFeTlcv6o4h_gJ-2cfxxbRsoC4lF7-KVc7Y6Gskllws"
   );
 
   const handleLogin = async (event) => {
