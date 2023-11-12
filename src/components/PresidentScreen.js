@@ -29,6 +29,11 @@ function PresidentScreen() {
       });
   }, []);
 
+  // Assuming post 1 is for the president
+  const presidentCandidates = candidates.filter(
+    (candidate) => candidate.post === 1
+  );
+
   const handleVote = (candidateId) => {
     if (candidateId && token) {
       axios
@@ -54,7 +59,7 @@ function PresidentScreen() {
           MySwal.fire({
             icon: "error",
             title: "Vote Failed",
-            text: "you've voted on this post, cannot vote again",
+            text: "You've voted on this post, cannot vote again",
           });
         });
     }
@@ -67,7 +72,10 @@ function PresidentScreen() {
         className="header fixed-top d-flex align-items-center"
       >
         <div className="d-flex align-items-center justify-content-between">
-          <a href="index.html" className="logo d-flex align-items-center">
+          <a
+            onClick={() => navigate("/home")}
+            className="logo d-flex align-items-center"
+          >
             <img src={logo} alt="logo" />
             <span className="d-none d-lg-block">
               <span style={{ color: "green", listStyle: "none" }}>
@@ -94,14 +102,31 @@ function PresidentScreen() {
             </button>
 
             {/* Vice President */}
-            <button
-              style={{ borderWidth: 0, backgroundColor: "#fff" }}
-              onClick={() => navigate("/2")}
-              className="nav-link "
-            >
-              <i className="bi bi-person"></i>
-              <span> VICE PRESIDENT </span>
-            </button>
+            <li className="nav-item">
+              <button
+                style={{ borderWidth: 0, backgroundColor: "#fff" }}
+                onClick={() => navigate("/2")}
+                className="nav-link "
+              >
+                <i className="bi bi-person"></i>
+                <span> VICE PRESIDENT </span>
+              </button>
+            </li>
+
+            {/* Financial secretary */}
+            <li className="nav-item">
+              <button
+                style={{
+                  backgroundColor: "#fff",
+                  borderWidth: 0,
+                }}
+                onClick={() => navigate("/3")}
+                className="nav-link collapsed"
+              >
+                <i className="bi bi-person"></i>
+                <span> FINANCIAL SECRETARY </span>
+              </button>
+            </li>
           </li>
 
           <li className="nav-item">
@@ -131,7 +156,7 @@ function PresidentScreen() {
           <div className="row">
             <div className="col-lg-8">
               <div className="row">
-                {candidates.map((candidate) => (
+                {presidentCandidates.map((candidate) => (
                   <div className="col-md-6" key={candidate.id}>
                     <div
                       className="card mb-3"
@@ -178,7 +203,7 @@ function PresidentScreen() {
 
       <footer id="footer" className="footer">
         <div className="copyright">
-          &copy; Copyright 2023 Avinx Nation | CHOWGOO All Rights Reserved
+          &copy; Copyright 2023 Avinx Nationx All Rights Reserved
         </div>
         <div className="credits"></div>
       </footer>

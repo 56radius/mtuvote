@@ -27,6 +27,9 @@ function HomeScreen() {
   };
 
   //handling financial secretary
+  const handleFinancialSecretary = () => {
+    navigate("/3");
+  };
 
   //handlogout functions
   const handleLogout = async () => {
@@ -94,10 +97,17 @@ function HomeScreen() {
           </li>
 
           <li className="nav-item">
-            <a className="nav-link collapsed" href="users-profile.html">
+            <button
+              style={{
+                backgroundColor: "#fff",
+                borderWidth: 0,
+              }}
+              onClick={handleFinancialSecretary}
+              className="nav-link collapsed"
+            >
               <i className="bi bi-person"></i>
               <span> FINANCIAL SECRETARY </span>
-            </a>
+            </button>
           </li>
 
           <li className="nav-item">

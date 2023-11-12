@@ -11,7 +11,7 @@ import ".././assets/dashboard/assets/vendor/bootstrap-icons/bootstrap-icons.css"
 
 const MySwal = withReactContent(Swal);
 
-function VicePresidentScreen() {
+function FinancialSecretaryScreen() {
   const navigate = useNavigate();
   const [candidates, setCandidates] = useState([]);
   const [token, setToken] = useState(
@@ -29,16 +29,16 @@ function VicePresidentScreen() {
       });
   }, []);
 
-  // Assuming post 2 is for the vice president
-  const vicePresidentCandidates = candidates.filter(
-    (candidate) => candidate.post === 2
+  // Assuming post 3 is for the president
+  const presidentCandidates = candidates.filter(
+    (candidate) => candidate.post === 3
   );
 
   const handleVote = (candidateId) => {
     if (candidateId && token) {
       axios
         .post(
-          `https://nacos-vote.onrender.com/voters/vote/2/${candidateId}`,
+          `https://nacos-vote.onrender.com/voters/vote/1/${candidateId}`,
           null,
           {
             headers: {
@@ -97,10 +97,8 @@ function VicePresidentScreen() {
               <i className="bi bi-person"></i>
               <span style={{ color: "green" }}> PRESIDENT </span>
             </button>
-          </li>
 
-          {/* Vice President */}
-          <li className="nav-item">
+            {/* Vice President */}
             <button
               style={{ borderWidth: 0, backgroundColor: "#fff" }}
               onClick={() => navigate("/2")}
@@ -109,10 +107,8 @@ function VicePresidentScreen() {
               <i className="bi bi-person"></i>
               <span> VICE PRESIDENT </span>
             </button>
-          </li>
 
-          {/* Financial secretary */}
-          <li className="nav-item">
+            {/* Financial secretary */}
             <button
               style={{ borderWidth: 0, backgroundColor: "#fff" }}
               onClick={() => navigate("/3")}
@@ -140,11 +136,17 @@ function VicePresidentScreen() {
       </aside>
 
       <main id="main" className="main">
+        <div className="pagetitle">
+          <h1>
+            <span style={{ color: "green" }}>Pick your president</span>
+          </h1>
+        </div>
+
         <section className="section dashboard">
           <div className="row">
             <div className="col-lg-8">
               <div className="row">
-                {vicePresidentCandidates.map((candidate) => (
+                {presidentCandidates.map((candidate) => (
                   <div className="col-md-6" key={candidate.id}>
                     <div
                       className="card mb-3"
@@ -191,7 +193,7 @@ function VicePresidentScreen() {
 
       <footer id="footer" className="footer">
         <div className="copyright">
-          &copy; Copyright 2023 Avinx Nation | CHOWGOO All Rights Reserved
+          &copy; Copyright 2023 Avinx Nationx All Rights Reserved
         </div>
         <div className="credits"></div>
       </footer>
@@ -199,4 +201,4 @@ function VicePresidentScreen() {
   );
 }
 
-export default VicePresidentScreen;
+export default FinancialSecretaryScreen;
