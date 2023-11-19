@@ -1,60 +1,49 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 import logo from "../assets/img/logo.jpg";
 import "../assets/vendor/bootstrap/css/bootstrap.min.css";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
-function LoginScreen() {
+function RegisterScreen() {
   const navigate = useNavigate();
-  const [voteNumber, setVoteNumber] = useState("");
+  const [matricNo, setMatricNo] = useState("");
 
-  const handleLogin = async (event) => {
+  const handleMatricNo = async () => {
     try {
-      event.preventDefault();
-
       const response = await fetch(
-        `https://nacos-vote.onrender.com/voters/login?voting_number=${voteNumber}`,
+        `https://nacos-vote.onrender.com/voters/number/${matricNo}`,
         {
-          method: "POST",
+          method: "GET",
           headers: {
-            "Content-Type": "application/json",
+            accept: "application/json",
           },
-          body: JSON.stringify({
-            voteNumber: voteNumber,
-          }),
         }
       );
 
-      if (response.ok) {
-        const responseData = await response.json();
-        const { token } = responseData;
+      const data = await response.json();
 
-        // Store the token in local storage
-        localStorage.setItem("authToken", token);
-
-        // Use navigate to go to the president screen
-        navigate("/1");
-
+      if (data.success) {
+        const voteNumber = data.data.voter.value;
+        // Show the vote number in a SweetAlert alert
         Swal.fire({
+          title: "Vote Number",
+          text: `Your vote number is ${voteNumber}`,
           icon: "success",
-          title: "Login Successful",
-          text: "Please vote well.",
         });
       } else {
         Swal.fire({
+          title: "Error",
+          text: "Invalid matric number. Please try again.",
           icon: "error",
-          title: "Login Failed",
-          text: "Please check your vote number and try again.",
         });
-        console.log("Error during login");
       }
     } catch (error) {
+      console.error("Error fetching data:", error);
       Swal.fire({
-        icon: "error",
         title: "Error",
-        text: "An error occurred during login. Please try again later.",
+        text: "An error occurred while fetching data. Please try again.",
+        icon: "error",
       });
-      console.error("Error during login:", error);
     }
   };
 
@@ -77,7 +66,7 @@ function LoginScreen() {
                           alt="logo"
                           style={{
                             width: "190%",
-                            height: "400px",
+                            height: "400%",
                           }}
                         />
                       </span>
@@ -97,30 +86,30 @@ function LoginScreen() {
                               htmlFor="yourPassword"
                               className="form-label"
                             >
-                              Vote number
+                              Matric No
                             </label>
                             <input
-                              type="password"
-                              name="country"
+                              type="text"
+                              name="matricNo"
                               className="form-control"
                               id="yourPassword"
-                              value={voteNumber}
-                              onChange={(e) => setVoteNumber(e.target.value)}
+                              value={matricNo}
+                              onChange={(e) => setMatricNo(e.target.value)}
                               required
                             />
                             <div className="invalid-feedback">
-                              Please enter vote number
+                              Please enter matric no
                             </div>
                           </div>
                           <div className="col-12">
                             <button
                               className="btn btn-primary w-100"
                               name="login"
-                              type="submit"
+                              type="button"
                               style={{ backgroundColor: "green" }}
-                              onClick={handleLogin}
+                              onClick={handleMatricNo}
                             >
-                              Login
+                              Get Vote No
                             </button>
                           </div>
                         </form>
@@ -137,4 +126,4 @@ function LoginScreen() {
   );
 }
 
-export default LoginScreen;
+export default RegisterScreen;

@@ -7,20 +7,20 @@ import logo from ".././assets/img/logo.jpg";
 import merit from ".././assets/img/merit.JPG";
 import ".././assets/dashboard/assets/css/style.css";
 import ".././assets/dashboard/assets/vendor/bootstrap/css/bootstrap.min.css";
-import ".././assets/dashboard/assets/vendor/bootstrap-icons/bootstrap-icons.css";
 
 const MySwal = withReactContent(Swal);
 
 function PresidentScreen() {
   const navigate = useNavigate();
   const [candidates, setCandidates] = useState([]);
-  const [token, setToken] = useState(
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjU0ZDUyZjRiZWY3YjQ5NjEwZWI5ODZmIiwiZXhwIjoxNzAyMjkyNzEzfQ.NFeTlcv6o4h_gJ-2cfxxbRsoC4lF7-KVc7Y6Gskllws"
-  );
+  const [token, setToken] = useState("");
 
   useEffect(() => {
+    const storedToken = localStorage.getItem("authToken");
+    setToken(storedToken);
+
     axios
-      .get("https://nacos-vote.onrender.com/candidate/")
+      .get("https://nacos-vote.onrender.com/candidate/") // Replace with your actual backend URL
       .then((response) => {
         setCandidates(response.data);
       })
@@ -29,7 +29,6 @@ function PresidentScreen() {
       });
   }, []);
 
-  // Assuming post 1 is for the president
   const presidentCandidates = candidates.filter(
     (candidate) => candidate.post === 1
   );
@@ -38,7 +37,7 @@ function PresidentScreen() {
     if (candidateId && token) {
       axios
         .post(
-          `https://nacos-vote.onrender.com/voters/vote/1/${candidateId}`,
+          `https://nacos-vote.onrender.com/voters/vote/1/${candidateId}`, // Replace with your actual backend URL
           null,
           {
             headers: {

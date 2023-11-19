@@ -15,7 +15,7 @@ function FinancialSecretaryScreen() {
   const navigate = useNavigate();
   const [candidates, setCandidates] = useState([]);
   const [token, setToken] = useState(
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjU0ZDUyZjRiZWY3YjQ5NjEwZWI5ODZmIiwiZXhwIjoxNzAyMjkyNzEzfQ.NFeTlcv6o4h_gJ-2cfxxbRsoC4lF7-KVc7Y6Gskllws"
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjU0ZDUyZjliZWY3YjQ5NjEwZWI5OGFmIiwiZXhwIjoxNzAyODAwNjM2fQ.azri2Zspw0xxsgTBeUVy2FjkKFoZ_vf8SYcIUzz3YHw"
   );
 
   useEffect(() => {

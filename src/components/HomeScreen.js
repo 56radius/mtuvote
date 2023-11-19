@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+//import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
 
@@ -32,17 +32,12 @@ function HomeScreen() {
   };
 
   //handlogout functions
-  const handleLogout = async () => {
-    try {
-      await axios.post("https://nacos-vote.onrender.com/voters/logout");
-      navigate("/");
-      console.log("Logout successful");
-      alert("Thank you for voting");
-    } catch (error) {
-      console.error("Logout failed", error);
-      // Handle logout error here, such as showing an error message
-      alert("Logout failed. Please try again.");
-    }
+  const handleLogout = () => {
+    // Remove the token from local storage
+    localStorage.removeItem("authToken");
+
+    // Redirect to the login sczreen
+    navigate("/");
   };
 
   return (
@@ -167,7 +162,7 @@ function HomeScreen() {
                 backgroundColor: "transparent",
                 borderWidth: 0,
               }}
-              onClick={() => navigate("/")}
+              onClick={handleLogout}
             >
               <i className="bi bi-person"></i>
               <span> LOG OUT </span>
