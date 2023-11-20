@@ -28,13 +28,13 @@ function SportDirectorScreen() {
       });
   }, []);
 
-  const proCandidates = candidates.filter((candidate) => candidate.post === 10);
+  const proCandidates = candidates.filter((candidate) => candidate.post === 0);
 
   const handleVote = (candidateId) => {
     if (candidateId && token) {
       axios
         .post(
-          `https://nacos-vote.onrender.com/voters/vote/10/${candidateId}`, // Replace with your actual backend URL
+          `https://nacos-vote.onrender.com/voters/vote/0/${candidateId}`, // Replace with your actual backend URL
           null,
           {
             headers: {
