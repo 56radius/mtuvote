@@ -9,7 +9,7 @@ import ".././assets/dashboard/assets/vendor/bootstrap/css/bootstrap.min.css";
 
 const MySwal = withReactContent(Swal);
 
-function FinancialSecretaryScreen() {
+function AssistantGeneralSecretaryScreen() {
   const navigate = useNavigate();
   const [candidates, setCandidates] = useState([]);
   const [token, setToken] = useState("");
@@ -28,16 +28,16 @@ function FinancialSecretaryScreen() {
       });
   }, []);
 
-  // Assuming post 3 is for the Financial Secretary
-  const financialSecretaryCandidates = candidates.filter(
-    (candidate) => candidate.post === 3
+  // Assuming post 5 is for the Assistant General Secretary
+  const assistantGeneralSecretaryCandidates = candidates.filter(
+    (candidate) => candidate.post === 5
   );
 
   const handleVote = (candidateId) => {
     if (candidateId && token) {
       axios
         .post(
-          `https://nacos-vote.onrender.com/voters/vote/3/${candidateId}`, // Replace with your actual backend URL
+          `https://nacos-vote.onrender.com/voters/vote/5/${candidateId}`, // Replace with your actual backend URL
           null,
           {
             headers: {
@@ -253,7 +253,7 @@ function FinancialSecretaryScreen() {
         <div className="pagetitle">
           <h1>
             <span style={{ color: "green" }}>
-              Pick your Financial Secretary
+              Pick your Assistant General Secretary
             </span>
           </h1>
         </div>
@@ -262,7 +262,7 @@ function FinancialSecretaryScreen() {
           <div className="row">
             <div className="col-lg-8">
               <div className="row">
-                {financialSecretaryCandidates.map((candidate) => (
+                {assistantGeneralSecretaryCandidates.map((candidate) => (
                   <div className="col-md-6" key={candidate.id}>
                     <div
                       className="card mb-3"
@@ -321,4 +321,4 @@ function FinancialSecretaryScreen() {
   );
 }
 
-export default FinancialSecretaryScreen;
+export default AssistantGeneralSecretaryScreen;

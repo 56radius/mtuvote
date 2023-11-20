@@ -14,11 +14,12 @@ const MySwal = withReactContent(Swal);
 function VicePresidentScreen() {
   const navigate = useNavigate();
   const [candidates, setCandidates] = useState([]);
-  const [token, setToken] = useState(
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjU0ZDUyZjliZWY3YjQ5NjEwZWI5OGFmIiwiZXhwIjoxNzAyODAwNjM2fQ.azri2Zspw0xxsgTBeUVy2FjkKFoZ_vf8SYcIUzz3YHw"
-  );
+  const [token, setToken] = useState(""); // Set the initial state to an empty string
 
   useEffect(() => {
+    const storedToken = localStorage.getItem("authToken");
+    setToken(storedToken);
+
     axios
       .get("https://nacos-vote.onrender.com/candidate/")
       .then((response) => {
@@ -97,30 +98,138 @@ function VicePresidentScreen() {
               <i className="bi bi-person"></i>
               <span style={{ color: "green" }}> PRESIDENT </span>
             </button>
-          </li>
 
-          {/* Vice President */}
-          <li className="nav-item">
-            <button
-              style={{ borderWidth: 0, backgroundColor: "#fff" }}
-              onClick={() => navigate("/2")}
-              className="nav-link "
-            >
-              <i className="bi bi-person"></i>
-              <span> VICE PRESIDENT </span>
-            </button>
-          </li>
+            {/* Vice President */}
+            <li className="nav-item">
+              <button
+                style={{ borderWidth: 0, backgroundColor: "#fff" }}
+                onClick={() => navigate("/2")}
+                className="nav-link "
+              >
+                <i className="bi bi-person"></i>
+                <span> VICE PRESIDENT </span>
+              </button>
+            </li>
 
-          {/* Financial secretary */}
-          <li className="nav-item">
-            <button
-              style={{ borderWidth: 0, backgroundColor: "#fff" }}
-              onClick={() => navigate("/3")}
-              className="nav-link "
-            >
-              <i className="bi bi-person"></i>
-              <span> FINANCIAL SECRETARY </span>
-            </button>
+            {/* Financial secretary */}
+            <li className="nav-item">
+              <button
+                style={{
+                  backgroundColor: "#fff",
+                  borderWidth: 0,
+                }}
+                onClick={() => navigate("/3")}
+                className="nav-link collapsed"
+              >
+                <i className="bi bi-person"></i>
+                <span> FINANCIAL SECRETARY </span>
+              </button>
+            </li>
+
+            {/* General Secretary */}
+            <li className="nav-item">
+              <button
+                style={{
+                  backgroundColor: "#fff",
+                  borderWidth: 0,
+                }}
+                onClick={() => navigate("/4")}
+                className="nav-link collapsed"
+              >
+                <i className="bi bi-person"></i>
+                <span> GENERAL SECRETARY </span>
+              </button>
+            </li>
+
+            {/* Assistant General Secretary */}
+            <li className="nav-item">
+              <button
+                style={{
+                  backgroundColor: "#fff",
+                  borderWidth: 0,
+                }}
+                onClick={() => navigate("/5")}
+                className="nav-link collapsed"
+              >
+                <i className="bi bi-person"></i>
+                <span> ASST GENERAL SECRETARY </span>
+              </button>
+            </li>
+
+            {/* PRO screen */}
+            <li className="nav-item">
+              <button
+                style={{
+                  backgroundColor: "#fff",
+                  borderWidth: 0,
+                }}
+                onClick={() => navigate("/6")}
+                className="nav-link collapsed"
+              >
+                <i className="bi bi-person"></i>
+                <span> PUBLIC RELATION OFFICER </span>
+              </button>
+            </li>
+
+            {/* Librarian */}
+            <li className="nav-item">
+              <button
+                style={{
+                  backgroundColor: "#fff",
+                  borderWidth: 0,
+                }}
+                onClick={() => navigate("/7")}
+                className="nav-link collapsed"
+              >
+                <i className="bi bi-person"></i>
+                <span> LIBRARIAN </span>
+              </button>
+            </li>
+
+            {/* Assistant Librarian */}
+            <li className="nav-item">
+              <button
+                style={{
+                  backgroundColor: "#fff",
+                  borderWidth: 0,
+                }}
+                onClick={() => navigate("/8")}
+                className="nav-link collapsed"
+              >
+                <i className="bi bi-person"></i>
+                <span> ASSISTANT LIBRARIAN </span>
+              </button>
+            </li>
+
+            {/* Social Director */}
+            <li className="nav-item">
+              <button
+                style={{
+                  backgroundColor: "#fff",
+                  borderWidth: 0,
+                }}
+                onClick={() => navigate("/9")}
+                className="nav-link collapsed"
+              >
+                <i className="bi bi-person"></i>
+                <span> SOCIAL DIRECTOR </span>
+              </button>
+            </li>
+
+            {/* Sport Director */}
+            <li className="nav-item">
+              <button
+                style={{
+                  backgroundColor: "#fff",
+                  borderWidth: 0,
+                }}
+                onClick={() => navigate("/10")}
+                className="nav-link collapsed"
+              >
+                <i className="bi bi-person"></i>
+                <span> SPORT DIRECTOR </span>
+              </button>
+            </li>
           </li>
 
           <li className="nav-item">
@@ -153,8 +262,8 @@ function VicePresidentScreen() {
                       <div className="card-body">
                         <div className="col-12">
                           <img
-                            src={merit}
-                            alt={candidate.firstname}
+                            src={candidate.image_url || merit} // Use candidate image_url if available, otherwise use a default image (merit)
+                            alt={`${candidate.firstname} ${candidate.lastname}`}
                             style={{
                               width: "100%",
                               height: "auto",

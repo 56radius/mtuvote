@@ -9,7 +9,7 @@ import ".././assets/dashboard/assets/vendor/bootstrap/css/bootstrap.min.css";
 
 const MySwal = withReactContent(Swal);
 
-function FinancialSecretaryScreen() {
+function GeneralSecretaryScreen() {
   const navigate = useNavigate();
   const [candidates, setCandidates] = useState([]);
   const [token, setToken] = useState("");
@@ -28,16 +28,16 @@ function FinancialSecretaryScreen() {
       });
   }, []);
 
-  // Assuming post 3 is for the Financial Secretary
-  const financialSecretaryCandidates = candidates.filter(
-    (candidate) => candidate.post === 3
+  // Assuming post 4 is for the General Secretary
+  const generalSecretaryCandidates = candidates.filter(
+    (candidate) => candidate.post === 4
   );
 
   const handleVote = (candidateId) => {
     if (candidateId && token) {
       axios
         .post(
-          `https://nacos-vote.onrender.com/voters/vote/3/${candidateId}`, // Replace with your actual backend URL
+          `https://nacos-vote.onrender.com/voters/vote/4/${candidateId}`, // Replace with your actual backend URL
           null,
           {
             headers: {
@@ -252,9 +252,7 @@ function FinancialSecretaryScreen() {
       <main id="main" className="main">
         <div className="pagetitle">
           <h1>
-            <span style={{ color: "green" }}>
-              Pick your Financial Secretary
-            </span>
+            <span style={{ color: "green" }}>Pick your General Secretary</span>
           </h1>
         </div>
 
@@ -262,7 +260,7 @@ function FinancialSecretaryScreen() {
           <div className="row">
             <div className="col-lg-8">
               <div className="row">
-                {financialSecretaryCandidates.map((candidate) => (
+                {generalSecretaryCandidates.map((candidate) => (
                   <div className="col-md-6" key={candidate.id}>
                     <div
                       className="card mb-3"
@@ -321,4 +319,4 @@ function FinancialSecretaryScreen() {
   );
 }
 
-export default FinancialSecretaryScreen;
+export default GeneralSecretaryScreen;

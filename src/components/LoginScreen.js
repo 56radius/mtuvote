@@ -27,7 +27,8 @@ function LoginScreen() {
 
       if (response.ok) {
         const responseData = await response.json();
-        const { token } = responseData;
+
+        const token = responseData.data;
 
         // Store the token in local storage
         localStorage.setItem("authToken", token);

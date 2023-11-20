@@ -4,7 +4,6 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import logo from ".././assets/img/logo.jpg";
-import merit from ".././assets/img/merit.JPG";
 import ".././assets/dashboard/assets/css/style.css";
 import ".././assets/dashboard/assets/vendor/bootstrap/css/bootstrap.min.css";
 
@@ -17,6 +16,7 @@ function PresidentScreen() {
 
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
+    console.log(storedToken);
     setToken(storedToken);
 
     axios
@@ -126,6 +126,111 @@ function PresidentScreen() {
                 <span> FINANCIAL SECRETARY </span>
               </button>
             </li>
+
+            {/* General Secretary */}
+            <li className="nav-item">
+              <button
+                style={{
+                  backgroundColor: "#fff",
+                  borderWidth: 0,
+                }}
+                onClick={() => navigate("/4")}
+                className="nav-link collapsed"
+              >
+                <i className="bi bi-person"></i>
+                <span> GENERAL SECRETARY </span>
+              </button>
+            </li>
+
+            {/* Assistant General Secretary */}
+            <li className="nav-item">
+              <button
+                style={{
+                  backgroundColor: "#fff",
+                  borderWidth: 0,
+                }}
+                onClick={() => navigate("/5")}
+                className="nav-link collapsed"
+              >
+                <i className="bi bi-person"></i>
+                <span> ASST GENERAL SECRETARY </span>
+              </button>
+            </li>
+
+            {/* PRO screen */}
+            <li className="nav-item">
+              <button
+                style={{
+                  backgroundColor: "#fff",
+                  borderWidth: 0,
+                }}
+                onClick={() => navigate("/6")}
+                className="nav-link collapsed"
+              >
+                <i className="bi bi-person"></i>
+                <span> PUBLIC RELATION OFFICER </span>
+              </button>
+            </li>
+
+            {/* Librarian */}
+            <li className="nav-item">
+              <button
+                style={{
+                  backgroundColor: "#fff",
+                  borderWidth: 0,
+                }}
+                onClick={() => navigate("/7")}
+                className="nav-link collapsed"
+              >
+                <i className="bi bi-person"></i>
+                <span> LIBRARIAN </span>
+              </button>
+            </li>
+
+            {/* Assistant Librarian */}
+            <li className="nav-item">
+              <button
+                style={{
+                  backgroundColor: "#fff",
+                  borderWidth: 0,
+                }}
+                onClick={() => navigate("/8")}
+                className="nav-link collapsed"
+              >
+                <i className="bi bi-person"></i>
+                <span> ASSISTANT LIBRARIAN </span>
+              </button>
+            </li>
+
+            {/* Social Director */}
+            <li className="nav-item">
+              <button
+                style={{
+                  backgroundColor: "#fff",
+                  borderWidth: 0,
+                }}
+                onClick={() => navigate("/9")}
+                className="nav-link collapsed"
+              >
+                <i className="bi bi-person"></i>
+                <span> SOCIAL DIRECTOR </span>
+              </button>
+            </li>
+
+            {/* Sport Director */}
+            <li className="nav-item">
+              <button
+                style={{
+                  backgroundColor: "#fff",
+                  borderWidth: 0,
+                }}
+                onClick={() => navigate("/10")}
+                className="nav-link collapsed"
+              >
+                <i className="bi bi-person"></i>
+                <span> SPORT DIRECTOR </span>
+              </button>
+            </li>
           </li>
 
           <li className="nav-item">
@@ -163,14 +268,18 @@ function PresidentScreen() {
                     >
                       <div className="card-body">
                         <div className="col-12">
-                          <img
-                            src={merit}
-                            alt={candidate.firstname}
-                            style={{
-                              width: "100%",
-                              height: "auto",
-                            }}
-                          />
+                          {candidate.image_url ? (
+                            <img
+                              src={candidate.image_url}
+                              alt={`${candidate.firstname} ${candidate.lastname}`}
+                              style={{
+                                width: "100%",
+                                height: "auto",
+                              }}
+                            />
+                          ) : (
+                            <p>No image available</p>
+                          )}
                           <hr />
 
                           <p>
