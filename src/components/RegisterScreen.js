@@ -30,24 +30,8 @@ function RegisterScreen() {
           title: "Copy Your Vote number",
           text: `Your Vote Number is, ${voteNumber}`,
           icon: "success",
-          showCancelButton: false,
-          showConfirmButton: true,
-          confirmButtonText: "OK",
-          allowOutsideClick: false,
-          preConfirm: () => {
-            // Show the loader animation
-            Swal.showLoading();
-
-            // Return a promise that resolves after a delay (simulate asynchronous action)
-            return new Promise((resolve) => {
-              setTimeout(() => {
-                resolve();
-              }, 2000); // Adjust the timeout duration as needed
-            });
-          },
         }).then(() => {
           // Navigate to the login screen after the loader animation
-          navigate("/login");
         });
       } else {
         Swal.fire({
