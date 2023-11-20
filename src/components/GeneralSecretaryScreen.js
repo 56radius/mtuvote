@@ -64,6 +64,38 @@ function GeneralSecretaryScreen() {
     }
   };
 
+  const handleLogout = () => {
+    // Call your logout API here
+    axios
+      .post("https://nacos-vote.onrender.com/voters/logout", null, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        MySwal.fire({
+          icon: "success",
+          title: "Logout Successful",
+          text: "You have been successfully logged out.",
+        });
+
+        // Remove token from local storage
+        localStorage.removeItem("authToken");
+
+        // Navigate to the login screen
+        navigate("/login");
+      })
+      .catch((error) => {
+        console.error("Logout failed", error);
+        MySwal.fire({
+          icon: "error",
+          title: "Logout Failed",
+          text: "An error occurred during logout.",
+        });
+      });
+  };
+
   return (
     <div>
       <header
@@ -240,7 +272,7 @@ function GeneralSecretaryScreen() {
                 backgroundColor: "transparent",
                 borderWidth: 0,
               }}
-              onClick={() => navigate("/")}
+              onClick={handleLogout}
             >
               <i className="bi bi-person"></i>
               <span> LOG OUT </span>

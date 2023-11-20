@@ -45,7 +45,7 @@ function LoginScreen() {
         Swal.fire({
           icon: "error",
           title: "Login Failed",
-          text: "Please check your vote number and try again.",
+          text: "Voter Is Invalid, Not Allowed To Vote.",
         });
         console.log("Error during login");
       }
