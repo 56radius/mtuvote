@@ -1,21 +1,33 @@
 import React, { useState } from "react";
-import logo from "../assets/img/logo.jpg";
-import "../assets/vendor/bootstrap/css/bootstrap.min.css";
-import { useNavigate } from "react-router-dom";
+import logo from "../../assets/img/logo.jpg";
+import "../../assets/vendor/bootstrap/css/bootstrap.min.css";
 import Swal from "sweetalert2";
 
 function RegisterScreen() {
-  const navigate = useNavigate();
   const [matricNo, setMatricNo] = useState("");
 
   const handleMatricNo = async () => {
     try {
+      // Check if the admin token is saved locally
+      const adminAuthToken = localStorage.getItem("adminAuthToken");
+
+      if (!adminAuthToken) {
+        // If the admin token is not available, show an unauthorized alert
+        Swal.fire({
+          title: "Unauthorized",
+          text: "You are not authorized to perform this action. Please log in as an admin.",
+          icon: "error",
+        });
+        return;
+      }
+
       const response = await fetch(
         `https://nacos-vote.onrender.com/voters/number/${matricNo}`,
         {
           method: "GET",
           headers: {
             accept: "application/json",
+            Authorization: `Bearer ${adminAuthToken}`, // Include the admin token in the headers
           },
         }
       );
@@ -25,7 +37,7 @@ function RegisterScreen() {
       if (data.success) {
         const voteNumber = data.data.voter.value;
 
-        // Show the SweetAlert with a loader animation
+        // Show the SweetAlert with the vote number
         Swal.fire({
           title: "Copy Your Vote number",
           text: `Your Vote Number is, ${voteNumber}`,
