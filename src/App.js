@@ -15,6 +15,7 @@ import LibrarianScreen from "./components/LibrarianScreen";
 import AssistantLibrarianScreen from "./components/AssistantLibrarianScreen";
 import SocialDirectorScreen from "./components/SocialDirectorScreen";
 import SportDirectorScreen from "./components/SportDirectorScreen";
+import VoteResultScreen from "./components/VoteResultScreen";
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -48,6 +49,7 @@ function App() {
           <Route path="/8" element={<AssistantLibrarianScreen />} />
           <Route path="/9" element={<SocialDirectorScreen />} />
           <Route path="/10" element={<SportDirectorScreen />} />
+          <Route path="/result" element={<VoteResultScreen />} />
         </Routes>
       </div>
     </Router>
